@@ -1,0 +1,46 @@
+// colors
+@background-color:              #d1d1da; 
+@loading-spinner-color:         darken(@background-color, 20%); 
+
+@navbar-color:                  #fff;
+@navbar-background-color:       #5d5d88;
+@navbar-border-color:           lighten(@navbar-background-color, 10%);
+@navbar-hover-background-color: darken(@navbar-background-color, 10%); 
+@navbar-brand-background-color: lighten(@navbar-background-color, 10%);
+
+@footer-background-color:       lighten(@navbar-background-color, 20%);
+@footer-color:                  darken(@navbar-background-color, 10%);
+@footer-link-color:             @footer-color;
+
+@download-background-color:     #c3461b;
+
+@link-color:                    #5d5d88; // sea blue
+@link-color-hover:              darken(@link-color, 10%);
+
+@banner-color:                  white;
+
+@screen-xl-min: 1700px;
+
+// media queries
+@desktop-xl:   ~"only screen and (min-width:"@screen-xl-min~")";
+@desktop-lg:   ~"only screen and (min-width:"@screen-lg-min~")";
+@desktop-md:   ~"only screen and (min-width:"@screen-md-min~")";
+@desktop-sm:   ~"only screen and (min-width:"@screen-sm-min~")";
+@tablet:       ~"only screen and (min-width:"@screen-sm-min~")";
+@phone:        ~"only screen and (min-width:"@screen-xs-min~")";
+
+// gradients
+.gradient (@startColor: #eee, @endColor: white) {
+	background-color: @startColor;
+	background: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
+	background: -webkit-linear-gradient(top, @startColor, @endColor);
+	background: -moz-linear-gradient(top, @startColor, @endColor);
+	background: -ms-linear-gradient(top, @startColor, @endColor);
+	background: -o-linear-gradient(top, @startColor, @endColor);
+}
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../library/bootstrap/fonts/glyphicons-halflings-regular.eot');
+  src: url('../library/bootstrap/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../library/bootstrap/fonts/glyphicons-halflings-regular.woff') format('woff'), url('../library/bootstrap/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../library/bootstrap/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}

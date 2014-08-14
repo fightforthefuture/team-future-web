@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Notifications by Fight for the Future</title>
+        <script type="text/javascript" src="/library/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="/library/underscore-1.6.0.min.js"></script>
+        <script type="text/javascript" src="/library/history/History.js"></script>
+        <script type="text/javascript" src="/library/history/History.jquery.js"></script>
+        <script type="text/javascript" src="/library/composer-1.0.4.4.js"></script>
+        <script type="text/javascript" src="/library/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/library/addon_io.js"></script>
+
+        <script type="text/javascript" src="/js/notifications.min.js"></script>
+        
+        <link href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,700" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="/css/notifications.css"/>
+        <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/iaphlelpiedmibpiaiebjbemjemmdeol">
+    </head>
+    <body>
+
+
+        <nav role="navigation" class="navbar navbar-default navbar-fixed-top" id="nav">
+            
+        </nav>
+
+
+        <div id="wrap">
+            <div id="main">
+
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                Copyright &copy; 2014 <a href="https://www.fightforthefuture.org">Fight for the Future</a>
+                /
+                Team Future is <a href="https://www.github.com">open source</a> and 
+                <a href="http://opensource.org/licenses/GPL-3.0">GPL v3-licensed</a>
+                /
+                <a href="https://www.fightforthefuture.org/privacy">Privacy Policy</a>
+                /
+                <a class="external" href="mailto:team@fightforthefuture.org">Contact</a>
+            </div>
+        </footer>
+    </body>
+    <script id="pages_home" type="text/template">
+        <div class="banner">
+            <img src="/images/pages/home/banner.jpg"/>
+            <div class="wrap">
+                <div class="bottom">
+                    <div class="container">
+                        <h1>
+                            Get alerted when it matters.
+                            <small>Join the Internet's first line of defense with the Team Future app!</small>
+                        </h1>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <ul class="download">
+        </ul>
+        <div class="container content text">
+            <h2>What is Team Future?</h2>
+            <p>
+                Team Future is the app that gives you realtime alerts when new
+                threats to freedom arise. Whether it's mass surveillance or
+                monopolistic corporations, our team of first responders is
+                constantly vigilant. When we send you an alert, you can quickly
+                take action and help spread the word.
+            </p>
+            <hr/>
+            <h2>How often will you send me alerts?</h2>
+            <p>
+                We realize it could be totally annoying to get alerts all the
+                time, so we promise to send you alerts only when something
+                really important is going down and we need your help.
+            </p>
+            <p>
+                We are currently beta testing and learning about the needs of
+                our users. If you have any suggestions or feedback,
+                <a class="external" href="mailto:team@fightforthefuture.org">
+                <strong>we would greatly value your input!</strong>
+                </a>
+            </p>
+            <hr/>
+            <h2>What devices does Team Future work with?</h2>
+            <p>
+                Currently we support Chrome and Firefox, with Android and iOS
+                apps coming soon!
+            </p>
+            <div class="heart">
+                <img src="/images/template/heart.png" width="64" height="64"/>
+            </div>
+        </div>
+        
+    </script>
+    <script id="pages_welcome" type="text/template">
+        <div>
+            WELCOME!
+        </div>
+    </script>
+    <script id="messages_view" type="text/template">
+        <div>
+            NOTIFICATION <%= id %>
+        </div>
+    </script>
+    <script id="accounts_nav_bar" type="text/template">
+        <div class="container">
+
+            <!-- Title -->
+            <div class="navbar-header pull-left">
+                <a href="/" class="navbar-brand"><img src="/images/template/heart.png" width="24" height="24"/> TEAM FUTURE</a>
+            </div>
+
+            <!-- 'Sticky' (non-collapsing) right-side menu item(s) -->
+            <div class="navbar-header pull-right">
+                <!--
+                <ul class="nav pull-left">
+                    <!-- This works well for static text, like a username -->
+                    <!-- <li class="navbar-text pull-left">Welcome!</li> -->
+                    <!-- Add any additional bootstrap header items.  This is a drop-down from an icon -->
+                    <!--
+                    <li class="dropdown pull-right">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle profile"><span class="glyphicon glyphicon-user"></span><b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/users/id" title="Profile">Profile</a>
+                            </li>
+                            <li>
+                                <a href="/logout" title="Logout">Logout </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                -->
+
+                <!-- Required bootstrap placeholder for the collapsed menu -->
+                <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+            </div>
+
+            <!--
+            <div class="collapse navbar-collapse navbar-left">
+            
+                <ul class="nav navbar-nav pull-right">
+                    <li><a href="/news">News</a></li>
+                    <li><a href="/Shop">Shop</a></li>
+                </ul>
+            </div>
+            -->
+            
+            <div class="collapse navbar-collapse navbar-right">
+            
+                <ul class="nav navbar-nav pull-right" id="nav_right">
+
+                </ul>
+            </div>
+            
+        </div>
+    </script>
+    <script id="download_button_nav" type="text/template">
+        <a href="#">
+            <span class="glyphicon glyphicon-download-alt"></span>
+            Install <%= browser %> App!
+        </a>
+    </script>
+    <script id="download_button_big" type="text/template"> 
+        
+            
+            <% if (browser == 'Chrome') { %>
+                <a class="download_link" href="#">
+                    <img src="/images/download/download_chrome.png" width="108" height="108"/>
+                    <strong>Install Team Future!</strong>
+                    <small>For Chrome 28+</small>
+                </a>
+            <% } else if (browser == 'Firefox') { %>
+                <a class="download_link" href="#">
+                    <img src="/images/download/download_firefox.png" width="108" height="108"/>
+                    <strong>Install Team Future!</strong>
+                    <small>For Firefox 23+</small>
+                </a>
+            <% } else { %>
+                <div class="download_unavailable">
+                    <img src="/images/download/chrome_flat.png"/>
+                    <img src="/images/download/firefox_flat.png" />
+                    <p>
+                        Sorry, your browser is unsupported.
+                    </p>
+                </div>
+            <% } %>
+            
+        </a>
+    </script>
+    <script id="accounts_nav_bar_dropdown" type="text/template">
+        <a href="/account">
+            <span class="glyphicon glyphicon-ok"></span>
+            Beta installed!
+        </a>
+    </script>
+    <script id="pages_loading" type="text/template">
+        <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+    </script>
+    <script id="accounts_edit" type="text/template">
+        <div class="banner">
+            <img src="/images/accounts/banner.jpg"/>
+            <div class="wrap">
+                <div class="bottom">
+                    <div class="container">
+                        <h1>
+                            Thanks for installing!
+                            <small>You're good to go!</small>
+                        </h1>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="container content text">
+            <h2>Now what?</h2>
+            <p>
+                We'll send you alerts when there's new threats to freedom
+                that need your attention. Or if you want to see the most recent
+                alert, check the toolbar icon!
+            </p>
+            <div class="heart">
+                <img src="/images/template/heart.png" width="64" height="64"/>
+            </div>
+        </div>
+    </script>
+</html>
