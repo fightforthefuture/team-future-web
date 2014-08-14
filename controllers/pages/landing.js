@@ -17,7 +17,7 @@ var PagesLandingController = Composer.Controller.extend({
     
     init: function(data)
     {
-        console.log('data: ', this.id);
+        this.with_bind(notifications.account, 'change:addon_exists', this.render.bind(this)); 
         this.render();
         
         return this;
