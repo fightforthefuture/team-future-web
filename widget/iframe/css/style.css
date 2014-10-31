@@ -1,0 +1,321 @@
+html, body {
+    height: 100%;
+}
+body {
+    padding: 0px;
+    margin: 0px;
+    font-family: "Montserrat", sans-serif;
+}
+h1, h2, p {
+    margin: 0px;
+    padding: 0px;
+}
+/* Basic styles */
+/* -------------------------------------------------------------------------- */
+div.clear {
+    clear: both;
+}
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.7);
+    -ms-transition: opacity .5s ease-in;
+    -o-transition: opacity .5s ease-in;
+    -moz-transition: opacity .5s ease-in;
+    -webkit-transition: opacity .5s ease-in;
+    transition: opacity .5s ease-in;
+    display: table;
+    opacity: 0;
+}
+.overlay.visible {
+    opacity: 1;
+}
+.overlay > div {
+    display: none;
+    -ms-transition: all .5s linear;
+    -o-transition: all .5s linear;
+    -moz-transition: all .5s linear;
+    -webkit-transition: all .5s linear;
+    transition: all .5s linear;
+    opacity: 0;
+    display: none;
+}
+.overlay > div.containerVisible {
+    display: table-cell;
+    vertical-align: middle;
+}
+.overlay > div.visible {
+    opacity: 1;
+}
+.overlay > div .modal {
+    margin: 0px auto;
+    box-sizing: border-box;
+    margin-top: -50px;
+    -ms-transition: all .5s ease-out;
+    -o-transition: all .5s ease-out;
+    -moz-transition: all .5s ease-out;
+    -webkit-transition: all .5s ease-out;
+    transition: all .5s ease-out;
+    box-shadow: 0px;
+}
+.overlay > div.visible .modal {
+    margin-top: 0px;
+    box-shadow: 0px 5px 20px rgba(0,0,0,.6);
+}
+.overlay > div.visible.swapping {
+    opacity: 0;
+}
+.overlay > div.visible.swapping .modal {
+    margin-top: 25px;
+    box-shadow: 0px;
+}
+
+/* Install Modal */
+/* -------------------------------------------------------------------------- */
+.overlay > div .modal#install {
+    padding: 25px;
+    width: 500px;
+    height: 500px;
+    background: #f04330;
+    color: white;
+}
+.overlay > div .modal#install hr {
+    border-top: 1px solid white;
+    border-bottom: 0px;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+/* Modal Styles */
+/* -------------------------------------------------------------------------- */
+.overlay > div .modal.standard {
+    width: 600px;
+    padding: 0px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    background: #cddbe6;
+}
+.overlay > div .modal.standard h1 {
+    background: #475b6a;
+    padding: 10px 15px;
+    font-size: 23px;
+    color: white;
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.overlay > div .modal.standard h2 {
+    text-align: center;
+}
+.overlay > div .modal.standard p.content {
+    text-align: center;
+    margin: 15px 0px 25px 0px;
+}
+.overlay > div .modal.standard p.content.bottom {
+    font-size: 14px;
+    margin: 25px 0px 0px 0px;
+}
+.overlay > div .modal.standard input[type=text] {
+    display: block;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-top: 0px;
+    border-bottom: 1px solid #828c93;
+    border-left: 0px;
+    border-right: 0px;
+    height: 43px;
+    line-height: 43px;
+    padding: 0px 20px;
+    font-size: 14px;
+    box-shadow: inset 0 7px 4px -7px rgba(0,0,0,0.5);
+    color: #4b616c;
+    font-weight: bold;
+    font-family: "Montserrat", Arial, sans-serif;
+}
+.overlay > div .modal.standard .fields.four input {
+    float: left;
+    border-right: 1px solid #828c93;
+    width: 25%;
+}
+.overlay > div .modal.standard .submit_area {
+    -webkit-border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 0px 20px 10px 20px;
+}
+
+.overlay > div .modal.standard button {
+    display: block;
+    margin: 10px auto 0px auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+    border: 0px;
+    letter-spacing: 1px;
+    font-size: 21px;
+    font-family: "Montserrat", Arial, sans-serif;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    background: #2ebe9b; /* Old browsers */
+    background: -moz-linear-gradient(top, #2dbb9b 0%, #28a588 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2dbb9b), color-stop(100%,#28a588)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #2dbb9b 0%,#28a588 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #2dbb9b 0%,#28a588 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #2dbb9b 0%,#28a588 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #2dbb9b 0%,#28a588 100%); /* W3C */
+    box-shadow: 0px 3px 3px rgba(0,0,0,.3);
+
+    &:disabled {
+        background: gray;
+        cursor: default;
+
+        &:hover {
+            background: gray;
+        }
+    }
+
+    &:hover {
+        background: #28a588;
+    }
+}
+.overlay > div .modal.standard .submit_area div.checkbox {
+    padding: 0px;
+    margin: 10px 0px 5px 0px;
+    text-align: center;
+    color: #4b616c;
+    font-size: 12px;
+}
+.overlay > div .modal.standard .submit_area div.checkbox.hidden {
+    display: none;
+}
+.overlay > div .modal.standard .submit_area div.checkbox label {
+    cursor: pointer;
+}
+.overlay > div .modal.standard .submit_area div.checkbox label:hover {
+    border-bottom: 1px dotted #4b616c;
+}
+.overlay > div .modal.standard .submit_area p.disclosure {
+    padding: 0px;
+    margin: 10px 0px 10px 0px;
+    text-align: center;
+    color: #4b616c;
+    font-size: 12px;
+}
+
+.overlay > div .modal.standard div.sharing {
+    text-align: center;
+}
+.overlay > div .modal.standard div.sharing .cta {
+    font-size: 13px;
+    opacity: .6;
+    margin: 25px 0px 10px 0px;
+}
+.overlay > div .modal.standard div.sharing .social {
+    display: inline-block;
+    margin-bottom: 0px;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background-image: none;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    -moz-user-select: none;
+    text-decoration: none;
+
+    border: 0px none;
+    border-radius: 5px;
+    font-weight: 700;
+    line-height: 40px;
+    text-transform: uppercase;
+    margin: 0px 7px 7px;
+    padding: 0px 17px;
+    color: white;
+    opacity: .9;
+}
+.overlay > div .modal.standard div.sharing .social:hover {
+    opacity: 1;
+}
+.overlay > div .modal.standard div.sharing .social.facebook {
+    background-color: #3754A9;
+}
+
+.overlay > div .modal.standard div.sharing .social.twitter {
+    background-color: #2D98D6;
+}
+
+
+/* Petition Modal Styles */
+/* -------------------------------------------------------------------------- */
+.overlay > div .modal#petition .comment {
+    background: #475b6a;
+    padding: 5px;
+    border-bottom: 1px solid #475b6a;
+
+}
+.overlay > div .modal#petition .comment .letter {
+    background: white;
+    max-height: 300px;
+    overflow: auto;
+    padding: 40px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #475b6a;
+}
+.overlay > div .modal#petition .comment textarea {
+    width: 100%;
+    border: 0px;
+    padding: 0px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    background: transparent;
+}
+
+/* Call Modal Styles */
+/* -------------------------------------------------------------------------- */
+.overlay > div .modal#call {
+    box-sizing: border-box;
+    padding: 25px;
+}
+
+/* Share / Basic Modal Styles */
+/* -------------------------------------------------------------------------- */
+.overlay > div .modal#modal {
+    box-sizing: border-box;
+    padding: 25px;
+}
+
+/* Floating "instruction" styles */
+/* -------------------------------------------------------------------------- */
+.instruction {
+    opacity: 0;
+    pointer-events: none;
+    -ms-transition: all .25s linear;
+    -o-transition: all .25s linear;
+    -moz-transition: all .25s linear;
+    -webkit-transition: all .25s linear;
+    transition: all .25s linear;
+}
+.instruction.visible {
+    opacity: 1;
+}
+.instruction.install_allow_firefox {
+    position: absolute;
+    left: 430px;
+    top: 20px;
+}

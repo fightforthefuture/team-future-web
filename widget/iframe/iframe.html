@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+<head>
+	<!-- Styles -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/spinkit.css">
+	<script type="text/javascript" src="js/library/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/library/underscore-1.6.0.min.js"></script>
+    <script type="text/javascript" src="js/library/composer-1.0.8.2.js"></script>
+    <script type="text/javascript" src="js/library/expanding.js"></script>
+    <script type="text/javascript" src="js/config/constants.js"></script>
+	<script type="text/javascript" src="js/notifications.js"></script>
+    <script type="text/javascript" src="js/models/field.js"></script>
+    <script type="text/javascript" src="js/models/letter.js"></script>
+    <script type="text/javascript" src="js/models/petition.js"></script>
+    <script type="text/javascript" src="js/models/modal.js"></script>
+    <script type="text/javascript" src="js/models/call.js"></script>
+    <script type="text/javascript" src="js/models/actions.js"></script>
+    <script type="text/javascript" src="js/models/campaign.js"></script>
+    <script type="text/javascript" src="js/controllers/_base_modal.js"></script>
+    <script type="text/javascript" src="js/controllers/install_modal.js"></script>
+    <script type="text/javascript" src="js/controllers/title.js"></script>
+    <script type="text/javascript" src="js/controllers/subtitle.js"></script>
+    <script type="text/javascript" src="js/controllers/content.js"></script>
+    <script type="text/javascript" src="js/controllers/instruction_install_firefox.js"></script>
+    <script type="text/javascript" src="js/controllers/sharing.js"></script>
+    <script type="text/javascript" src="js/controllers/modal.js"></script>
+    <script type="text/javascript" src="js/controllers/call_modal.js"></script>
+    <script type="text/javascript" src="js/controllers/petition_modal.js"></script>
+    <script type="text/javascript" src="js/controllers/petition_letter.js"></script>
+    <script type="text/javascript" src="js/controllers/petition_fields_four.js"></script>
+    <script type="text/javascript" src="js/controllers/input_text.js"></script>
+    <script type="text/javascript" src="js/controllers/button.js"></script>
+    <script type="text/javascript" src="js/controllers/checkbox.js"></script>
+    <script type="text/javascript" src="js/controllers/disclosure.js"></script>
+    <script type="text/javascript" src="js/controllers/hidden_field.js"></script>
+    <link href="//fonts.googleapis.com/css?family=Montserrat|Oleo+Script" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+
+
+    <div class="overlay" id="main">
+
+        
+
+
+    </div>
+
+
+
+</body>
+
+<script id="install_modal" type="text/template">
+    <div class="modal" id="install">
+        <h1>Take action with Team Future App!</h1>
+        <hr/>
+        <p>
+            Here are all the great benefits!
+        </p>
+        <ul>
+            <li>Be the first to know when this campaign is updated!</li>
+            <li>Follow and get notifications from causes you care about!</li>
+            <li>Take immediate action and contact your lawmakers!</li>
+        </ul>
+        <a href="#" class="install">Install Free App</a>
+        <br/><br/>
+        <a href="#" class="install">No thanks</a>
+    </div>
+</script>
+
+<script id="loading_modal" type="text/template">
+    <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+</script>
+
+<script id="petition_modal" type="text/template">
+    <div class="modal standard" id="petition">
+        <form>
+        </form>
+    </div>
+</script>
+
+<script id="call_modal" type="text/template">
+    <div class="modal standard" id="call">
+        <form>
+        </form>
+    </div>
+</script>
+
+<script id="modal" type="text/template">
+    <div class="modal standard" id="modal">
+    </div>
+</script>
+
+<script id="title" type="text/template">
+    <% if (typeof action != 'undefined' && action) { %><%=action%>:<% } %>
+    <%= title %>
+</script>
+
+<script id="subtitle" type="text/template">
+    <%= subtitle %>
+</script>
+
+<script id="content" type="text/template">
+    <%= content %>
+</script>
+
+<script id="sharing" type="text/template">
+    <% if (typeof cta != 'undefined' && cta) { %>
+        <div class="cta"><%= cta %></div>
+    <% } %>
+    <% if (typeof facebook != 'undefined') { %>
+        <a class="social facebook" href="#">Share on Facebook</a>
+    <% } %>
+    <% if (typeof twitter != 'undefined') { %>
+        <a class="social twitter" href="#">Share on Twitter</a>
+    <% } %>
+</script>
+
+<script id="input_text" type="text/template">
+    <input type="text" name="<%= name %>" 
+        <% if (typeof placeholder != 'undefined') { %>
+            placeholder="<%= placeholder %>"
+        <% } %>
+        />
+</script>
+
+<script id="hidden_field" type="text/template">
+    <input type="hidden" name="<%= name %>" value="<%= value %>"/>
+</script>
+
+<script id="checkbox" type="text/template">
+    <input type="checkbox" name="<%= name %>" id="checkbox_<%= name %>"
+        <% if (typeof checked !='undefined' && checked) { %>
+            checked="checked"
+        <% } %>
+        />
+    <label for="checkbox_<%= name %>">
+        <%= typeof text != 'undefined' ? text : '' %>
+    </label>
+</script>
+
+<script id="button" type="text/template">
+    <%= text %>
+</script>
+
+<script id="disclosure" type="text/template">
+    <%= disclosure %>
+    <a href="<%= privacy_policy %>" target="_blank">Privacy Policy.</a>
+</script>
+
+<script id="petition_letter" type="text/template">
+    <div class="comment">
+        <div class="letter">
+            <textarea class="expanding" name="<%=field%>"><%= text %></textarea>
+        </div>
+    </div>
+</script>
+
+<script id="petition_fields_four" type="text/template">
+    <div class="fields four"></div>
+    <div class="clear"></div>
+    <div class="submit_area"></div>
+</script>
+
+<script id="instruction_install_firefox" type="text/template">
+    <img src="images/install_allow_firefox.png" />
+</script>
+
+
+</html>
