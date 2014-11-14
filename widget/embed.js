@@ -79,6 +79,9 @@ var TeamFuture = {
         if (!data.campaigns.length)
             throw 'No action data to parse';
 
+        if (!data.org)
+            throw 'No org information';
+
         if (this.options.action == null)
             this.actionData = data.campaigns[0];
         else
@@ -88,6 +91,8 @@ var TeamFuture = {
         
         if (!this.actionData)
             throw 'The specified action was not found in the data file.';
+
+        this.actionData.org = data.org;
 
         for (var i = 0; i < this.actionDataLoadCallbacks.length; i++)
             this.actionDataLoadCallbacks[i]();
