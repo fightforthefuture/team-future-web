@@ -51,6 +51,17 @@ var TeamFuture = {
 	},
 
     loadActionData: function() {
+
+        links = document.getElementsByTagName('link');
+        for (var i = 0; i < links.length; i++)
+            if (links[i].type == 'application/oap+jsonp')
+                this.options.actionUrl = links[i].href;
+
+        if (!window.OAP)
+            window.OAP = {};
+        
+        window.OAP.jsonp = this.jsonp.bind(this);
+
         var script = document.createElement('script');
         script.type = 'text/javascript';
         script.async = true;
@@ -196,6 +207,18 @@ var TeamFuture = {
     	});
     },
 
+    subscribe: function() {
+
+        this.checkAddonExists({
+            yes: function() {
+                addon_io.call('add_subscription', {}, function(response) {});
+            }.bind(this),
+            no: function() {
+                this.install(options, 'subscribe');
+            }.bind(this)
+        });
+    },
+
     install: function(options, afterAction) {
         options || (options = {});
         options.action = 'install';
@@ -206,7 +229,14 @@ var TeamFuture = {
             this.checkAddonExists({
                 yes: function() {
                     this.stopInstallPoll();
-                    this.signPetition(options);
+                    switch (afterAction) {
+                        case 'subscribe':
+                            this.subscribe();
+                            break;
+                        case 'install':
+                            this.signPetition(options);
+                            break;
+                    }
                 }.bind(this)
             });
         }.bind(this), 250);

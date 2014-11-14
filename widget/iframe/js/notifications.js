@@ -72,29 +72,29 @@ var notifications = {
 		switch (action) {
 
 			case 'install':
-				controllers[action] = new InstallModalController();
+				this.controllers[action] = new InstallModalController();
 				break;
 
 			case 'petition':
-				controllers[action] = new PetitionModalController({
+				this.controllers[action] = new PetitionModalController({
                     petitionId: options.petitionId
                 });
 				break;
 
             case 'call':
-                controllers[action] = new CallModalController({
+                this.controllers[action] = new CallModalController({
                     callId: options.callId
                 });
                 break;
 
             case 'modal':
-                controllers[action] = new ModalController({
+                this.controllers[action] = new ModalController({
                     modalId: options.modalId
                 });
                 break;
 		}
 
-		this.cur_controller = controllers[action];
+		this.cur_controller = this.controllers[action];
 
 		$('.overlay > div').addClass('containerVisible');
 		setTimeout(function() {
