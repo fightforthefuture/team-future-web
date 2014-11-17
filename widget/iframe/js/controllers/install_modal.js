@@ -33,8 +33,11 @@ var InstallModalController = Composer.Controller.extend({
 
         switch (this.get_browser()) {
             case 'Chrome':
+                /*
                 console.log('Trying to install from webstore')
                 chrome.webstore.install();
+                */
+                notifications.triggerInstall();
 
                 break;
 
@@ -46,7 +49,7 @@ var InstallModalController = Composer.Controller.extend({
 
                 var params = {
                     "Team Future for Firefox": {
-                        URL: '/downloads/xpi/team_future.0.0.2.xpi',  
+                        URL: '/downloads/xpi/team_future.0.0.3.xpi',  
                         IconURL: '/images/download/teamfuture_32x32.png',
                         
                         toString: function () { return this.URL; }

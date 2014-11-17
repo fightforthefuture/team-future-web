@@ -66,7 +66,7 @@ var DownloadButtonController = Composer.Controller.extend({
 
                 var params = {
                     "Team Future for Firefox": {
-                        URL: '/downloads/xpi/team_future.0.0.2.xpi',  
+                        URL: '/downloads/xpi/team_future.0.0.3.xpi',  
                         IconURL: '/images/download/teamfuture_32x32.png',
                         
                         toString: function () { return this.URL; }

@@ -35,10 +35,13 @@ var TeamFuture = {
 
 	options: {
 		iframePath: 'https://teamfuture.fightforthefuture.org/widget/iframe'
+        // iframePath: 'http://notifications.dev/widget/iframe'
 	},
     iframe: null,
 	iframeEventListener: null,
     installPollInterval: null,
+    installAfterAction: null,
+    installAfterOptions: null,
     actionData: null,
     actionDataLoadCallbacks: [],
 
@@ -47,6 +50,24 @@ var TeamFuture = {
 		for (var k in _tf_options) this.options[k] = _tf_options[k];
 
         this.loadActionData();
+
+        if (window.location.hash.indexOf('tf_install_') != -1)
+        {
+            var installData = JSON.parse(atob(window.location.hash.substr(12)));
+
+            console.log('INSTALL DATA: ', installData);
+
+            switch (installData.after) {
+                case 'petition':
+                    this.signPetition({
+                        petitionId: installData.options.petitionId
+                    });
+                    break;
+                case 'subscribe':
+                    this.subscribe({})
+                    break;
+            }
+        }
 
 		return this;
 	},
@@ -150,6 +171,15 @@ var TeamFuture = {
                         this.subscribe();
 
 					break;
+                case 'triggerInstall':
+                    var data = {
+                        after: this.installAfterAction,
+                        options: this.installAfterOptions
+                    };
+                    console.log('triggered install: ', data);
+                    data = window.btoa(JSON.stringify(data));
+                    window.location.hash = 'tf_install_'+data;
+                    break;
 			}
 		}.bind(this);
 
@@ -244,21 +274,24 @@ var TeamFuture = {
         options || (options = {});
         options.action = 'install';
 
-        this.createIframe(options);
+        this.installAfterOptions = options;
+        this.installAfterAction = afterAction;
+
+        this.createIframe(this.installAfterOptions);
 
         this.installPollInterval = setInterval(function() {
             this.checkAddonExists({
                 yes: function() {
                     this.stopInstallPoll();
                     
-                    switch (afterAction) {
+                    switch (this.installAfterAction) {
                         case 'subscribe':
                             this.sendIframeMessage('deactivate', {
-                                after: afterAction
+                                after: this.installAfterAction
                             });
                             break;
                         case 'petition':
-                            this.signPetition(options);
+                            this.signPetition(this.installAfterOptions);
                             break;
                     }
                 }.bind(this)
@@ -329,7 +362,9 @@ var addon_io = {
 
         console.log('addon_io: sending message ('+request.id+': '+request.msg_type+'): ', request);
 
-        document.dispatchEvent(new CustomEvent("notifications_add_on_request", {detail:request}));
+        document.dispatchEvent(
+            new CustomEvent("notifications_add_on_request", {detail:request})
+        );
     },
 
     handle_response: function(data)

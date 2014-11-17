@@ -151,6 +151,11 @@ var notifications = {
     		this.cur_controller.release();
     		this.cur_controller = null;
     	}.bind(this), this.controller_swap_delay - 5);
+    },
+
+    triggerInstall: function() {
+        window.open('https://chrome.google.com/webstore/detail/iaphlelpiedmibpiaiebjbemjemmdeol');
+        sendMessage('triggerInstall', {});
     }
 }
 
