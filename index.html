@@ -6,7 +6,7 @@
         <script type="text/javascript" src="/library/underscore-1.6.0.min.js"></script>
         <script type="text/javascript" src="/library/history/History.js"></script>
         <script type="text/javascript" src="/library/history/History.jquery.js"></script>
-        <script type="text/javascript" src="/library/composer-1.0.4.4.js"></script>
+        <script type="text/javascript" src="/library/composer-1.0.11.js"></script>
         <script type="text/javascript" src="/library/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/library/addon_io.js"></script>
 
@@ -49,8 +49,8 @@
                 <div class="bottom">
                     <div class="container">
                         <h1>
-                            Get alerted when it matters.
-                            <small>Join the Internet's first line of defense with the Team Future app!</small>
+                            Get notifications for activism.
+                            <small>Team Future lets you subscribe to realtime alerts from causes you care about.</small>
                         </h1>
                     </div>
                 </div>
@@ -62,18 +62,18 @@
         <div class="container content text">
             <h2>What is Team Future?</h2>
             <p>
-                Team Future is the app that gives you realtime alerts when new
-                threats to freedom arise. Whether it's mass surveillance or
-                monopolistic corporations, our team of first responders is
-                constantly vigilant. When we send you an alert, you can quickly
-                take action and help spread the word.
+                Team Future is like RSS for political activism. Subscribe to
+                feeds from causes you care about and get realtime alerts whenever
+                something big is going down. Team Future makes it easy to sign
+                petitions, call Congress, and share important political actions
+                with your friends.
             </p>
             <hr/>
-            <h2>How often will you send me alerts?</h2>
+            <h2>How often will I get notifications?</h2>
             <p>
-                We realize it could be totally annoying to get alerts all the
-                time, so we promise to send you alerts only when something
-                really important is going down and we need your help.
+                You are in control. Subscribe to alerts from causes you care
+                about. It's easy to unsubsribe. You can also temporarily disable
+                alerts with just one click in your Team Future feed.
             </p>
             <p>
                 We are currently beta testing and learning about the needs of
@@ -83,10 +83,15 @@
                 </a>
             </p>
             <hr/>
-            <h2>What devices does Team Future work with?</h2>
+            <h2>I'm a site owner. How do I create notifications for my subscribers?</h2>
             <p>
-                Currently we support Chrome and Firefox, with Android and iOS
-                apps coming soon!
+                Team Future is built around the Open Activism Protocol (OAP).
+                Creating a feed of notifications is as simple as placing one
+                JSON file on your site. You can embed our subscribe and activism
+                widget with just a couple lines of HTML and JavaScript.
+            </p>
+            <p>
+                <a href="/developers"><strong>Learn more in our Developers section.</strong></a>
             </p>
             <div class="heart">
                 <img src="/images/template/heart.png" width="64" height="64"/>
@@ -104,12 +109,46 @@
             NOTIFICATION <%= id %>
         </div>
     </script>
+    <script id="pages_developers" type="text/template">
+        <div class="container content text">
+            <h1>Developers Guide</h1>
+            <h2>Background</h2>
+            <p>
+                Team Future is based around the Open Activism Protocol (OAP).
+                This is an RSS-like protocol with all sorts of built-in goodness
+                geared towards political activism. Put an OAP feed up at any
+                URL, and anyone can subscribe to your notifications&mdash;either
+                through the Team Future App or the (optional) Team Future
+                JavaScript Widget.
+            </p>
+            <h2>Open Activism Protocol (OAP)</h2>
+            <p>
+                OAP consists of a simple JSON or JSONP definition file, plus a
+                meta tag pointing to it in your HTML code. The definition file
+                contains information about your organization as well as an
+                ordered list of all your notifications and political actions.
+                The meta tag allows an OAP client (like Team Future) to find
+                your feed.
+            </p>
+            <p>
+                <a href="/developers/OAP"><strong>Read the OAP format documentation.</strong></a>
+            </p>
+            <ul>
+                <li>Learn more </li>
+            </ul>
+
+        </div>
+    </script>
     <script id="accounts_nav_bar" type="text/template">
         <div class="container">
 
             <!-- Title -->
             <div class="navbar-header pull-left">
                 <a href="/" class="navbar-brand"><img src="/images/template/heart.png" width="24" height="24"/> TEAM FUTURE</a>
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/developers">Developers</a></li>
+                </ul>
             </div>
 
             <!-- 'Sticky' (non-collapsing) right-side menu item(s) -->

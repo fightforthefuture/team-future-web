@@ -111,6 +111,7 @@ var BaseModalController = Composer.Controller.extend({
         var elements    = this.form.elements;
         var letter      = this.model.get('letter');
         var fields      = this.model.get('fields');
+        var user        = notifications.user;
 
         if (letter && letter.get('editable'))
             data[letter.get('field')] = elements[letter.get('field')].value;
@@ -130,6 +131,10 @@ var BaseModalController = Composer.Controller.extend({
                         value = false;
 
                     data[model.get('name')] = value;
+
+                    if (model.get('autofill'))
+                        user.set_autofill(model.get('autofill'), value);
+
                     break;
 
                 case 'checkbox':

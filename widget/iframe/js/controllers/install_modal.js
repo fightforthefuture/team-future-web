@@ -7,7 +7,8 @@ var InstallModalController = Composer.Controller.extend({
     },
 
     events: {
-        'click a.install': 'install'
+        'click a.install': 'install',
+        'click a.cancel': 'cancel'
     },
 
     init: function(data) {
@@ -26,15 +27,56 @@ var InstallModalController = Composer.Controller.extend({
         return this;
     },
 
-    install: function() {
+    install: function(e) {
+        if (e)
+            e.preventDefault();
 
-        // JL NOTE ~ Firefox only for now lol
-        var xpi_url = '/downloads/xpi/team_future.'+FIREFOX_XPI_VER+'.xpi';
-        window.location.href = xpi_url;
+        switch (this.get_browser()) {
+            case 'Chrome':
+                console.log('Trying to install from webstore')
+                chrome.webstore.install();
 
-        this.track_subcontroller('instructions', function() {
-            return new InstructionInstallFirefoxController({});
-        }.bind(this));
+                break;
+
+            case 'Firefox':
+
+                this.track_subcontroller('instructions', function() {
+                    return new InstructionInstallFirefoxController({});
+                }.bind(this));
+
+                var params = {
+                    "Team Future for Firefox": {
+                        URL: '/downloads/xpi/team_future.0.0.2.xpi',  
+                        IconURL: '/images/download/teamfuture_32x32.png',
+                        
+                        toString: function () { return this.URL; }
+                    }
+                };
+                InstallTrigger.install(params);
+
+                break;
+
+            default:
+                alert('your browser is not supported lol');
+                break;
+        }
+    },
+
+    cancel: function(e) {
+        if (e)
+            e.preventDefault();
+
+        notifications.closeOverlay();
+    },
+
+    get_browser: function() {
+        if (window.chrome)
+            return 'Chrome';
+        else if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1)
+            return 'Firefox';
+        else
+            return 'Other';
     }
+
 });
 

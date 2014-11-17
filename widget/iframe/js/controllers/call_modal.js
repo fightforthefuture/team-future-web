@@ -42,6 +42,12 @@ var CallModalController = BaseModalController.extend({
         this.render_sharing_links(this.form);
         this.render_bottom_content(this.form);
 
+        this.track_subcontroller('privacy_notice', function() {
+            return new PrivacyNoticeController({
+                action_host: this.model.get('endpoint')
+            });
+        }.bind(this));
+
         return this;
     }
 });

@@ -36,6 +36,7 @@ var TeamFuture = {
 	options: {
 		iframePath: 'http://notifications.dev/widget/iframe'
 	},
+    iframe: null,
 	iframeEventListener: null,
     installPollInterval: null,
     actionData: null,
@@ -98,26 +99,28 @@ var TeamFuture = {
             this.actionDataLoadCallbacks[i]();
     },
 
+    sendIframeMessage: function(requestType, data)
+    {
+        data || (data = {});
+        data.requestType = requestType;
+        data.TF_WIDGET_MSG = true;
+        if (this.iframe)
+            this.iframe.contentWindow.postMessage(data, '*');
+    },
+
 	createIframe: function(options) {
 
 		this.injectCSS('_tf_iframe_css', '#_tf_iframe { position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; z-index: 20000; }');
 
-		var iframe = document.createElement('iframe');
+		this.iframe = document.createElement('iframe');
         var origin = encodeURIComponent(window.location.origin);
-		iframe.id = '_tf_iframe';
-		iframe.src = this.options.iframePath + '/iframe.html?origin=' + origin;
-		iframe.frameBorder = 0;
-		iframe.allowTransparency = true; 
-		iframe.style.display = 'none';
-		document.body.appendChild(iframe);
+		this.iframe.id = '_tf_iframe';
+		this.iframe.src = this.options.iframePath+'/iframe.html?origin='+origin;
+		this.iframe.frameBorder = 0;
+		this.iframe.allowTransparency = true; 
+		this.iframe.style.display = 'none';
+		document.body.appendChild(this.iframe);
 
-		var sendMessage = function(requestType, data)
-		{
-			data || (data = {});
-			data.requestType = requestType;
-			data.TF_WIDGET_MSG = true;
-			iframe.contentWindow.postMessage(data, '*');
-		}
 		this.iframeEventListener = function(e) {
 			if (!e.data || !e.data.TF_IFRAME_MSG)
 				return;
@@ -126,19 +129,26 @@ var TeamFuture = {
 
 			switch (e.data.requestType) {
 				case 'ready':
-					iframe.style.display = 'block';
-					sendMessage('activate', options);
+					this.iframe.style.display = 'block';
+					this.sendIframeMessage('activate', options);
 
                     if (this.actionData)
-                        sendMessage('putActionData', this.actionData);
+                        this.sendIframeMessage('putActionData',this.actionData);
                     else
                         this.actionDataLoadCallbacks.push(function() {
-                            sendMessage('putActionData', this.actionData);
+                            this.sendIframeMessage(
+                                'putActionData',
+                                this.actionData
+                            );
                         }.bind(this));
 
 					break;
 				case 'close':
 					this.destroyIframe();
+                    
+                    if (e.data.after == 'subscribe')
+                        this.subscribe();
+
 					break;
 			}
 		}.bind(this);
@@ -163,6 +173,7 @@ var TeamFuture = {
 			window.detachEvent("onmessage", this.iframeEventListener);
 
         this.stopInstallPoll();
+        this.iframe = null;
 
 		this.iframeEventListener = null;
 	},
@@ -204,7 +215,11 @@ var TeamFuture = {
 
     	this.checkAddonExists({
     		yes: function() {
-    			this.createIframe(options);
+                if (!this.iframe)
+                    this.createIframe(options);
+                else
+                    this.sendIframeMessage('petition', options);
+
     		}.bind(this),
     		no: function() {
     			this.install(options, 'petition');
@@ -212,7 +227,8 @@ var TeamFuture = {
     	});
     },
 
-    subscribe: function() {
+    subscribe: function(options) {
+        options || (options = {});
 
         this.checkAddonExists({
             yes: function() {
@@ -234,11 +250,14 @@ var TeamFuture = {
             this.checkAddonExists({
                 yes: function() {
                     this.stopInstallPoll();
+                    
                     switch (afterAction) {
                         case 'subscribe':
-                            this.subscribe();
+                            this.sendIframeMessage('deactivate', {
+                                after: afterAction
+                            });
                             break;
-                        case 'install':
+                        case 'petition':
                             this.signPetition(options);
                             break;
                     }

@@ -56,9 +56,15 @@ var PetitionModalController = BaseModalController.extend({
                     inject: this.form,
                     collection: this.model.get('fields'),
                     disclosure: this.model.get('disclosure'),
-                    privacy_policy: this.model.get('privacy_policy')
+                    privacy_policy: notifications.campaign.get_privacy_policy()
                 });
             }.bind(this));
+
+        this.track_subcontroller('privacy_notice', function() {
+            return new PrivacyNoticeController({
+                action_host: this.model.get('endpoint')
+            });
+        }.bind(this));
 
         return this;
     }

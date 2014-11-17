@@ -30,10 +30,12 @@ var notifications = {
     cur_controller: null,
     controllers: {},
     campaign: null,
+    user: null,
 
 	init: function() {
 		this.showOverlay();
 		this.campaign = new Campaign();
+        this.user = new User().populate();
 	},
 
 	showOverlay: function() {
@@ -49,10 +51,11 @@ var notifications = {
         }.bind(this), false);
 	},
 
-    closeOverlay: function(e) {
+    closeOverlay: function(afterAction) {
+        afterAction || (afterAction = null);
         $('.overlay').removeClass('visible');
         setTimeout(function() {
-            sendMessage('close');
+            sendMessage('close', {after: afterAction});
         }.bind(this), 500);
     },
 
@@ -178,6 +181,10 @@ window.addEventListener('message', function(e) {
         	console.log('GOT ACTION DATA: ', e.data);
         	notifications.campaign.activate(e.data);
         	break;
+
+        case 'deactivate':
+            notifications.closeOverlay(e.data.after);
+            break;
     }
 });
 

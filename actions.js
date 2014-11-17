@@ -8,7 +8,7 @@ OAP.jsonp({
     "campaigns": [
         {
             "id-DISABLE-": "comcast_merger",
-            "href": "http://battle.dev/actions.js"
+            "href": "https://www.battleforthenet.com/actions.js"
         },
         {
             "id": "resetthenet",

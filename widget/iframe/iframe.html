@@ -1,12 +1,13 @@
 <!doctype html>
 <html>
 <head>
+    <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/iaphlelpiedmibpiaiebjbemjemmdeol">
 	<!-- Styles -->
 	<link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/spinkit.css">
 	<script type="text/javascript" src="js/library/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/library/underscore-1.6.0.min.js"></script>
-    <script type="text/javascript" src="js/library/composer-1.0.8.2.js"></script>
+    <script type="text/javascript" src="js/library/composer-1.0.11.js"></script>
     <script type="text/javascript" src="js/library/expanding.js"></script>
     <script type="text/javascript" src="js/config/constants.js"></script>
 	<script type="text/javascript" src="js/notifications.js"></script>
@@ -17,6 +18,7 @@
     <script type="text/javascript" src="js/models/call.js"></script>
     <script type="text/javascript" src="js/models/actions.js"></script>
     <script type="text/javascript" src="js/models/campaign.js"></script>
+    <script type="text/javascript" src="js/models/user.js"></script>
     <script type="text/javascript" src="js/controllers/_base_modal.js"></script>
     <script type="text/javascript" src="js/controllers/install_modal.js"></script>
     <script type="text/javascript" src="js/controllers/title.js"></script>
@@ -26,6 +28,7 @@
     <script type="text/javascript" src="js/controllers/sharing.js"></script>
     <script type="text/javascript" src="js/controllers/modal.js"></script>
     <script type="text/javascript" src="js/controllers/call_modal.js"></script>
+    <script type="text/javascript" src="js/controllers/privacy_notice.js"></script>
     <script type="text/javascript" src="js/controllers/petition_modal.js"></script>
     <script type="text/javascript" src="js/controllers/petition_letter.js"></script>
     <script type="text/javascript" src="js/controllers/petition_fields_four.js"></script>
@@ -66,7 +69,7 @@
         </ul>
         <a href="#" class="install">Install Free App</a>
         <br/><br/>
-        <a href="#" class="install">No thanks</a>
+        <a href="#" class="cancel">No thanks</a>
     </div>
 </script>
 
@@ -129,6 +132,9 @@
         <% if (typeof placeholder != 'undefined') { %>
             placeholder="<%= placeholder %>"
         <% } %>
+        <% if (typeof value != 'undefined') { %>
+            value="<%= value %>"
+        <% } %>
         />
 </script>
 
@@ -174,5 +180,11 @@
     <img src="images/install_allow_firefox.png" />
 </script>
 
+<script id="privacy_notice" type="text/template">
+    <div>
+        Your data will be submitted to <%=action_host%>. Make sure you trust
+        this domain. <a href="#">Privacy information</a>
+    </div>
+</script>
 
 </html>
