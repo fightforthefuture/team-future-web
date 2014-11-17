@@ -34,7 +34,7 @@ if (typeof _tf_options.action == "undefined")
 var TeamFuture = {
 
 	options: {
-		iframePath: 'http://notifications.dev/widget/iframe'
+		iframePath: 'https://teamfuture.fightforthefuture.org/widget/iframe'
 	},
     iframe: null,
 	iframeEventListener: null,
