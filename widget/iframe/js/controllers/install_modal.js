@@ -49,7 +49,7 @@ var InstallModalController = Composer.Controller.extend({
 
                 var params = {
                     "Team Future for Firefox": {
-                        URL: '/downloads/xpi/team_future.0.0.3.xpi',  
+                        URL: '/downloads/xpi/team_future.0.0.4.xpi',  
                         IconURL: '/images/download/teamfuture_32x32.png',
                         
                         toString: function () { return this.URL; }
