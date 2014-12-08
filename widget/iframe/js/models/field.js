@@ -5,7 +5,9 @@ var Field = Composer.Model.extend({
             this.set({value: notifications.user.get(this.get('autofill'))});
 
         return this;
-    }
+    },
+
+    id_key: 'name',
 });
 var Fields = Composer.Collection.extend({
     model: Field

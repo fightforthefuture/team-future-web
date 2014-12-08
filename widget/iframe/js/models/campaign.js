@@ -9,13 +9,25 @@ var Campaign = Composer.RelationalModel.extend({
         initialized: false
     },
 
+    init: function() {
+    },
+
     isInitialized: function() {
         return this.get('initialized');
     },
 
     activate: function(data) {
-        this.set({ initialized: true}, {silent: true});
-        this.set(data);
+        this.set(data, {silent: true});
+
+        /*
+        if (this.get('locales'))
+        {
+            this.set(this.get('locales').es, {upsert: true, silent: true});
+            // console.log('hurk durk: ', this.get('locales').es);
+        }
+        */
+        console.log('merged model: ', this.toJSON());
+        this.set({ initialized: true});
     },
 
     get_privacy_policy: function() {

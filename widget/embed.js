@@ -35,7 +35,7 @@ var TeamFuture = {
 
 	options: {
 		iframePath: 'https://teamfuture.fightforthefuture.org/widget/iframe'
-        // iframePath: 'http://notifications.dev/widget/iframe'
+        //iframePath: 'http://notifications.dev/widget/iframe'
 	},
     iframe: null,
 	iframeEventListener: null,

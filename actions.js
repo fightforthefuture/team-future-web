@@ -11,6 +11,15 @@ OAP.jsonp({
             "href": "https://www.battleforthenet.com/actions.js"
         },
         {
+            "default_locale": "en-us",
+            "locales": {
+                "es-mx": {
+                    "title": "Restablecer el Internet!",
+                    "notification": "Restablecer el Internet!",
+                    "description": "The NSA is exploiting weak links in Internet security to spy on the entire world, twisting the Internet we love into something it was never meant to be: a panopticon. We can't stop targeted attacks, but we *can* stop mass surveillance, by building proven security into the everyday Internet.",
+                    "action_button_text": "Tomar Medidas"
+                }
+            },
             "id": "resetthenet",
             "url": "https://www.resetthenet.com",
             "title": "Reset the Net!",
