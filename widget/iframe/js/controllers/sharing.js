@@ -24,6 +24,12 @@ var SharingController = Composer.Controller.extend({
 
     render: function() {
 
+        var data = this.sharing;
+        data.locale = {
+            share_facebook: locale.get('share_facebook'),
+            share_twitter: locale.get('share_twitter')
+        }
+
         var html = notifications.render_template('sharing', this.sharing);
         this.html(html);
 

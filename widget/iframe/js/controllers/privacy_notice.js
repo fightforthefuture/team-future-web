@@ -38,7 +38,12 @@ var PrivacyNoticeController = Composer.Controller.extend({
     render: function()
     {
         data = {
-            action_host: this.action_host
+            locale: {
+                privacy_notice: locale.get_subst('privacy_notice', {
+                    ACTION_HOST: this.action_host,
+                }),
+                privacy_information: locale.get('privacy_information')
+            }
         };
         this.html(notifications.render_template('privacy_notice', data));
 

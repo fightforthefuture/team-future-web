@@ -34,8 +34,8 @@ if (typeof _tf_options.action == "undefined")
 var TeamFuture = {
 
 	options: {
-		iframePath: 'https://teamfuture.fightforthefuture.org/widget/iframe'
-        //iframePath: 'http://notifications.dev/widget/iframe'
+		// iframePath: 'https://teamfuture.fightforthefuture.org/widget/iframe'
+        iframePath: 'http://notifications.dev/widget/iframe'
 	},
     iframe: null,
 	iframeEventListener: null,
@@ -44,6 +44,9 @@ var TeamFuture = {
     installAfterOptions: null,
     actionData: null,
     actionDataLoadCallbacks: [],
+
+    // Will be overridden by any preference set in add-on settings trololol
+    locale: (navigator.userLanguage || navigator.language).toLowerCase(),
 
 	init: function() {
 
@@ -125,6 +128,7 @@ var TeamFuture = {
         data || (data = {});
         data.requestType = requestType;
         data.TF_WIDGET_MSG = true;
+        data.locale = this.locale;
         if (this.iframe)
             this.iframe.contentWindow.postMessage(data, '*');
     },
@@ -229,8 +233,12 @@ var TeamFuture = {
 
             clearTimeout(timer);
             console.log('addon is present: ', response);
+
+            if (response.locale)
+                this.locale = response.locale;
+
             options.yes(response);
-        });
+        }.bind(this));
 
         timer = setTimeout(function() {
             console.log('addon is not present!');

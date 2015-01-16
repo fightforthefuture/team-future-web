@@ -175,6 +175,12 @@ window.addEventListener('message', function(e) {
     if (e.origin != ORIGIN)
     	throw 'Unauthorized origin.';
 
+    if (e.data.locale)
+    {
+        locale.populate_strings(e.data.locale);
+        delete e.data.locale;
+    }
+
     switch (e.data.requestType) {
 
         case 'activate':

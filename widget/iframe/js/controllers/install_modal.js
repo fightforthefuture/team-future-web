@@ -20,7 +20,17 @@ var InstallModalController = Composer.Controller.extend({
 
     render: function() {
 
-        data = {}
+        data = {
+            locale: {
+                install_headline: locale.get('install_headline'),
+                install_benefits: locale.get('install_benefits'),
+                install_know: locale.get('install_know'),
+                install_notifications: locale.get('install_notifications'),
+                install_action: locale.get('install_action'),
+                install_no: locale.get('install_no'),
+                install_yes: locale.get('install_yes')
+            }
+        }
         var html = notifications.render_template('install_modal', data);
         this.html(html);
 
