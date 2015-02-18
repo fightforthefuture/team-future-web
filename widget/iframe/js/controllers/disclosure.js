@@ -19,7 +19,10 @@ var DisclosureController = Composer.Controller.extend({
     render: function() {
         data = {
             disclosure: this.disclosure,
-            privacy_policy: this.privacy_policy
+            privacy_policy: this.privacy_policy,
+            locale: {
+                privacy_policy: locale.get('privacy_policy')
+            }
         };
         this.html(notifications.render_template('disclosure', data));
 

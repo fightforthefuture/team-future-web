@@ -7,8 +7,10 @@
     <link rel="stylesheet" type="text/css" href="css/spinkit.css">
 	<script type="text/javascript" src="js/library/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/library/underscore-1.6.0.min.js"></script>
-    <script type="text/javascript" src="js/library/composer-1.0.14.js"></script>
+    <script type="text/javascript" src="js/library/composer-TEST.js"></script>
     <script type="text/javascript" src="js/library/expanding.js"></script>
+    <script type="text/javascript" src="js/config/locales.js"></script>
+    <script type="text/javascript" src="js/library/locale_manager.js"></script>
     <script type="text/javascript" src="js/config/constants.js"></script>
 	<script type="text/javascript" src="js/notifications.js"></script>
     <script type="text/javascript" src="js/models/field.js"></script>
@@ -57,19 +59,19 @@
 
 <script id="install_modal" type="text/template">
     <div class="modal" id="install">
-        <h1>Take action with Team Future App!</h1>
+        <h1><%=locale.install_headline%></h1>
         <hr/>
         <p>
-            Here are all the great benefits!
+            <%=locale.install_benefits%>
         </p>
         <ul>
-            <li>Be the first to know when this campaign is updated!</li>
-            <li>Follow and get notifications from causes you care about!</li>
-            <li>Take immediate action and contact your lawmakers!</li>
+            <li><%=locale.install_know%></li>
+            <li><%=locale.install_notifications%></li>
+            <li><%=locale.install_action%></li>
         </ul>
-        <a href="#" class="install">Install Free App</a>
+        <a href="#" class="install"><%=locale.install_yes%></a>
         <br/><br/>
-        <a href="#" class="cancel">No thanks</a>
+        <a href="#" class="cancel"><%=locale.install_no%></a>
     </div>
 </script>
 
@@ -120,10 +122,10 @@
         <div class="cta"><%= cta %></div>
     <% } %>
     <% if (typeof facebook != 'undefined') { %>
-        <a class="social facebook" href="#">Share on Facebook</a>
+        <a class="social facebook" href="#"><%=locale.share_facebook%></a>
     <% } %>
     <% if (typeof twitter != 'undefined') { %>
-        <a class="social twitter" href="#">Share on Twitter</a>
+        <a class="social twitter" href="#"><%=locale.share_twitter%></a>
     <% } %>
 </script>
 
@@ -159,7 +161,9 @@
 
 <script id="disclosure" type="text/template">
     <%= disclosure %>
-    <a href="<%= privacy_policy %>" target="_blank">Privacy Policy.</a>
+    <a href="<%= privacy_policy %>" target="_blank">
+        <%=locale.privacy_policy%>
+    </a>
 </script>
 
 <script id="petition_letter" type="text/template">
@@ -182,8 +186,8 @@
 
 <script id="privacy_notice" type="text/template">
     <div>
-        Your data will be submitted to <%=action_host%>. Make sure you trust
-        this domain. <a href="#">Privacy information</a>
+        <%=locale.privacy_notice%>
+        <a href="#"><%=locale.privacy_information%></a>
     </div>
 </script>
 
